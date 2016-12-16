@@ -1,0 +1,17 @@
+C:\Users\krish\Documents\Visual Studio 2017\Projects\Incomming Orders\Incomming Orders\bin\Debug\Incomming Orders.exe.config
+C:\Users\krish\Documents\Visual Studio 2017\Projects\Incomming Orders\Incomming Orders\bin\Debug\Incomming Orders.exe
+C:\Users\krish\Documents\Visual Studio 2017\Projects\Incomming Orders\Incomming Orders\bin\Debug\Incomming Orders.pdb
+C:\Users\krish\Documents\Visual Studio 2017\Projects\Incomming Orders\Incomming Orders\obj\Debug\initial.g.cs
+C:\Users\krish\Documents\Visual Studio 2017\Projects\Incomming Orders\Incomming Orders\obj\Debug\MainWindow.g.cs
+C:\Users\krish\Documents\Visual Studio 2017\Projects\Incomming Orders\Incomming Orders\obj\Debug\App.g.cs
+C:\Users\krish\Documents\Visual Studio 2017\Projects\Incomming Orders\Incomming Orders\obj\Debug\Incomming Orders_MarkupCompile.cache
+C:\Users\krish\Documents\Visual Studio 2017\Projects\Incomming Orders\Incomming Orders\obj\Debug\Incomming Orders_MarkupCompile.lref
+C:\Users\krish\Documents\Visual Studio 2017\Projects\Incomming Orders\Incomming Orders\obj\Debug\initial.baml
+C:\Users\krish\Documents\Visual Studio 2017\Projects\Incomming Orders\Incomming Orders\obj\Debug\MainWindow.baml
+C:\Users\krish\Documents\Visual Studio 2017\Projects\Incomming Orders\Incomming Orders\obj\Debug\Incomming Orders.g.resources
+C:\Users\krish\Documents\Visual Studio 2017\Projects\Incomming Orders\Incomming Orders\obj\Debug\Incomming_Orders.Properties.Resources.resources
+C:\Users\krish\Documents\Visual Studio 2017\Projects\Incomming Orders\Incomming Orders\obj\Debug\Incomming Orders.csproj.GenerateResource.Cache
+C:\Users\krish\Documents\Visual Studio 2017\Projects\Incomming Orders\Incomming Orders\obj\Debug\Incomming Orders.exe
+C:\Users\krish\Documents\Visual Studio 2017\Projects\Incomming Orders\Incomming Orders\obj\Debug\Incomming Orders.pdb
+C:\Users\krish\Documents\Visual Studio 2017\Projects\Incomming Orders\Incomming Orders\obj\Debug\Title.g.cs
+C:\Users\krish\Documents\Visual Studio 2017\Projects\Incomming Orders\Incomming Orders\obj\Debug\Title.baml
