@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Incomming_Orders
+namespace Incomming_Orders.ControlsView
 {
     /// <summary>
-    /// Interaction logic for Title.xaml
+    /// Interaction logic for MainWindowTitle.xaml
     /// </summary>
-    public partial class Title : Page
+    public partial class MainWindowTitle : UserControl
     {
-        public Title()
+        public MainWindowTitle()
         {
             InitializeComponent();
         }

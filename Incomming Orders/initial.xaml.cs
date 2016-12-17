@@ -34,7 +34,7 @@ namespace Incomming_Orders
         {
             if (userid.Text.Equals("hello") && pass.Password.Equals("hello"))
             {
-                var host = new MainWindow();
+                var host = new MainWindow() {Tag="Hello" };
                 host.Show();
                 this.Close();
             }

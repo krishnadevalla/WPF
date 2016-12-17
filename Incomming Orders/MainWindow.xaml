@@ -4,9 +4,50 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Incomming_Orders"
+        xmlns:c="clr-namespace:Incomming_Orders.Converters"
+        xmlns:controlsview="clr-namespace:Incomming_Orders.ControlsView"
         mc:Ignorable="d"
-        Title="Incoming Orders" Background="Purple" Height="700" Width="1200">
-    <Grid x:Name="grid" ShowGridLines="True">
+        Title="Incoming Orders" Height="700" Width="1200">
+    <Window.Resources>
+        <c:SDConverter x:Key="sdc" />
+        <c:PriorityConverter x:Key="pc" />
+        <DataTemplate x:Key="orderview">
+            <Border HorizontalAlignment="Center" Background="Azure" Width="Auto" BorderThickness="10" Padding="20">
+                <StackPanel Orientation="Horizontal" > 
+                    <Grid Background="Beige">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="67" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="880"/>
+                        </Grid.ColumnDefinitions>
+                        <Viewbox Grid.Column="0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock TextAlignment="Center"  Text="{Binding OrderId}"/>
+                            <TextBlock TextAlignment="Center"  Text="*" Foreground="{Binding Priority, Converter={StaticResource pc}}"/>
+                        </StackPanel>
+                    </Viewbox>
+                    
+                    <Viewbox Grid.Column="1">
+                        <TextBlock TextAlignment="Center"  Text="{Binding NoOfItems}"/>
+                    </Viewbox>
+                    <Viewbox Grid.Column="2">
+                        <TextBlock TextAlignment="Center" Text="{Binding ScheduledDate,Converter={StaticResource sdc}}"/>
+                    </Viewbox>
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+    </Window.Resources>
+    <Window.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFE504FB" Offset="0"/>
+            <GradientStop Color="#FFBB1862" Offset="1"/>
+        </LinearGradientBrush>
+    </Window.Background>
+    <Grid x:Name="grid">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.1*"/>
             <RowDefinition Height="*"/>
@@ -16,7 +57,7 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="0.4*"/>
         </Grid.ColumnDefinitions>
-        <Frame Grid.Row="0" Grid.Column="0" Source="Title.xaml"/>
+        <controlsview:MainWindowTitle x:Name="mainWindowTitle" Grid.Row="0" Grid.Column="0"/>
         <Grid Grid.Row="0" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition/>
@@ -25,13 +66,11 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Viewbox  Grid.Row="0" Grid.Column="0">
+            <Viewbox x:Name="viewbox"  Grid.Row="0" Grid.Column="0">
                 <TextBlock Height="Auto"  Name="time" Text="" TextAlignment="Center" Foreground="White" TextWrapping="Wrap"/>
             </Viewbox>
-            
-            <Image Name="img"  Grid.Row="0" Grid.Column="1" Height="Auto" Width="Auto" Source="Resource/images/logout.png" MouseLeftButtonUp="img_MouseLeftButtonUp"/>
-
+            <Image Name="img"  Grid.Row="0" Grid.Column="1" Height="Auto" Width="Auto" Source="Resource/images/logout.png" MouseLeftButtonUp="Img_MouseLeftButtonUp"/>
         </Grid>
-        
+        <ListBox x:Name="listorders" FontStretch="Normal" Grid.Row="1" Grid.Column="0" ScrollViewer.VerticalScrollBarVisibility="Visible" Background="IndianRed" ItemTemplate="{StaticResource orderview}" ItemsSource="{Binding}" Visibility="Visible"/>
     </Grid>
 </Window>

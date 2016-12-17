@@ -54,9 +54,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Title.xaml.cs">
-      <DependentUpon>Title.xaml</DependentUpon>
+    <Compile Include="Business Layer\Orders.cs" />
+    <Compile Include="Business Layer\OrdersContext.cs" />
+    <Compile Include="ControlsView\MainWindowTitle.xaml.cs">
+      <DependentUpon>MainWindowTitle.xaml</DependentUpon>
     </Compile>
+    <Page Include="ControlsView\MainWindowTitle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="initial.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -69,6 +75,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Converters\PriorityConverter.cs" />
+    <Compile Include="Converters\SDConverter.cs" />
     <Compile Include="initial.xaml.cs">
       <DependentUpon>initial.xaml</DependentUpon>
     </Compile>
@@ -76,10 +84,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Title.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
