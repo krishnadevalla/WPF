@@ -18,11 +18,10 @@ namespace Incomming_Orders.Business_Layer
         public string DS { set; get; }
         public string StartPlace { set; get; } 
     }
-    class DeliveryService
+    public class DeliveryService
     {
-        string DSId { get; set; }
-        string DSName { set; get; }
-        string DSLogo { set; get; }
+        public string DSId { get; set; }
+        public string DSName { set; get; }
     }
     public class AssignGroup
     {

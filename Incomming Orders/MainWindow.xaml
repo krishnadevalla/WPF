@@ -7,51 +7,68 @@
         xmlns:c="clr-namespace:Incomming_Orders.Converters"
         xmlns:controlsview="clr-namespace:Incomming_Orders.ControlsView"
         mc:Ignorable="d"
-        Title="Incoming Orders" Height="700" Width="1200">
+        Title="Incoming Orders" Height="Auto" Width="Auto">
     <Window.Resources>
         <c:SDConverter x:Key="sdc" />
         <c:PriorityConverter x:Key="pc" />
+        <c:DSConverter x:Key="dsc"/>
         <DataTemplate x:Key="orderview">
             <Border HorizontalAlignment="Center" Background="Azure" Width="Auto" BorderThickness="10" Padding="20">
-                <StackPanel Orientation="Horizontal" > 
-                    <Grid Background="Beige">
+                <StackPanel Orientation="Horizontal" >
+                    <Grid >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="67" />
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
                             <ColumnDefinition Width="200"/>
                             <ColumnDefinition Width="200"/>
-                            <ColumnDefinition Width="880"/>
+                            <ColumnDefinition Width="700"/>
                         </Grid.ColumnDefinitions>
                         <Viewbox Grid.Column="0">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock TextAlignment="Center"  Text="{Binding OrderId}"/>
-                            <TextBlock TextAlignment="Center"  Text="*" Foreground="{Binding Priority, Converter={StaticResource pc}}"/>
-                        </StackPanel>
-                    </Viewbox>
-                    
-                    <Viewbox Grid.Column="1">
-                        <TextBlock TextAlignment="Center"  Text="{Binding NoOfItems}"/>
-                    </Viewbox>
-                    <Viewbox Grid.Column="2">
-                        <TextBlock TextAlignment="Center" Text="{Binding ScheduledDate,Converter={StaticResource sdc}}"/>
-                    </Viewbox>
+
+                            <Ellipse Height="200" Width="200" OpacityMask="{x:Null}" StrokeThickness="15" Stroke="{Binding Priority, Converter={StaticResource pc}}" >
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="{Binding DS, Converter={StaticResource dsc}}" Stretch="Uniform"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+
+                        </Viewbox>
+                        <Viewbox Grid.Column="1">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock TextAlignment="Center"  Text="{Binding OrderId}"/>
+                            </StackPanel>
+                        </Viewbox>
+
+                        <Viewbox Grid.Column="2">
+                            <TextBlock TextAlignment="Center"  Text="{Binding NoOfItems}"/>
+                        </Viewbox>
+                        <Viewbox Grid.Column="3">
+                            <TextBlock TextAlignment="Center" Text="{Binding ScheduledDate,Converter={StaticResource sdc}}"/>
+                        </Viewbox>
                     </Grid>
                 </StackPanel>
             </Border>
         </DataTemplate>
+        <Style TargetType="ListBoxItem">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="LightSteelBlue" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Window.Resources>
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-            <GradientStop Color="#FFE504FB" Offset="0"/>
-            <GradientStop Color="#FFBB1862" Offset="1"/>
+            <GradientStop Color="#FFFB0480" Offset="1"/>
+            <GradientStop Color="#FFE6490E" Offset="0.406"/>
         </LinearGradientBrush>
     </Window.Background>
     <Grid x:Name="grid">
         <Grid.RowDefinitions>
             <RowDefinition Height="0.1*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.05*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -71,6 +88,40 @@
             </Viewbox>
             <Image Name="img"  Grid.Row="0" Grid.Column="1" Height="Auto" Width="Auto" Source="Resource/images/logout.png" MouseLeftButtonUp="Img_MouseLeftButtonUp"/>
         </Grid>
-        <ListBox x:Name="listorders" FontStretch="Normal" Grid.Row="1" Grid.Column="0" ScrollViewer.VerticalScrollBarVisibility="Visible" Background="IndianRed" ItemTemplate="{StaticResource orderview}" ItemsSource="{Binding}" Visibility="Visible"/>
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <ListBox BorderThickness="0" Grid.Row="0" Background="Transparent">
+                <ListBoxItem Padding="20" Background="#FF05D848" Foreground="White" FontWeight="ExtraBold">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="110"/>
+
+                            <ColumnDefinition Width="200"/>
+
+                            <ColumnDefinition Width="200"/>
+
+                            <ColumnDefinition Width="700"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock TextAlignment="Center" Grid.Column="0" FontSize="30" Text="Service" />
+
+                        <TextBlock TextAlignment="Center" Grid.Column="1" FontSize="30" Text=" Order ID" />
+
+                        <TextBlock TextAlignment="Center" Grid.Column="2" FontSize="30" Text=" Count"/>
+
+                        <TextBlock TextAlignment="Center" Grid.Column="3" FontSize="30" Text=" Scheduled Delivery Date"/>
+                    </Grid>
+                </ListBoxItem>
+            </ListBox>
+            <ListBox x:Name="listorders" Grid.Row="1" BorderThickness="1" ScrollViewer.VerticalScrollBarVisibility="Visible" Background="Transparent" ItemTemplate="{StaticResource orderview}" BorderBrush="Azure" ItemsSource="{Binding}" Visibility="Visible" Margin="0,10,0,45" FontWeight="Black" Grid.RowSpan="2"/>
+        </Grid>
     </Grid>
 </Window>

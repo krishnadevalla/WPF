@@ -75,6 +75,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Converters\DSConverter.cs" />
     <Compile Include="Converters\PriorityConverter.cs" />
     <Compile Include="Converters\SDConverter.cs" />
     <Compile Include="initial.xaml.cs">
@@ -119,6 +120,17 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\images\logout.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resource\logos\dhl.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\logos\ups.png" />
+    <Resource Include="Resource\logos\usps.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\logos\fedex.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
