@@ -19,6 +19,8 @@ namespace Incomming_Orders.Converters
                 return "Tomorrow";
             else if (DateTime.Now.AddDays(2).ToString().Substring(0, 8) == v.ToString().Substring(0, 8))
                 return "Day after Tomorrow";
+            else if (DateTime.Now.Date > v)
+                return "Delivered";
             return DateTime.Parse(value.ToString()).ToString("MMMM dd, yyyy") ;
         }
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

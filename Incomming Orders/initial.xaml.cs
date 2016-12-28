@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Incomming_Orders.Business_Layer.AppData;
+using System.Security.Cryptography;
 
 namespace Incomming_Orders
 {
@@ -34,7 +36,8 @@ namespace Incomming_Orders
         {
             if (userid.Text.Equals("hello") && pass.Password.Equals("hello"))
             {
-                var host = new MainWindow() {Tag="Hello" };
+                AppData.initialToMainWindowsSecret = Encoding.UTF8.GetString(MD5.Create().ComputeHash(Encoding.ASCII.GetBytes("AL10$TLPWIOJMNI59%3#9)!^LOENDGG$$&WE~!")));
+                var host = new MainWindow() {Tag="hello" };
                 host.Show();
                 this.Close();
             }

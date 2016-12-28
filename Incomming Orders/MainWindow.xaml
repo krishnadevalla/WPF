@@ -12,8 +12,27 @@
         <c:SDConverter x:Key="sdc" />
         <c:PriorityConverter x:Key="pc" />
         <c:DSConverter x:Key="dsc"/>
+        <Style x:Key="orderlistcolor" TargetType="ListBoxItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border Name="_Border"
+                                Padding="2"
+                                SnapsToDevicePixels="true">
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="_Border" Property="Background" Value="Yellow"/>
+                                <Setter Property="Foreground" Value="Red"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <DataTemplate x:Key="orderview">
-            <Border HorizontalAlignment="Center" Background="Azure" Width="Auto" BorderThickness="10" Padding="20">
+            <Border HorizontalAlignment="Center" Background="Azure" Width="Auto" BorderThickness="10" Padding="20" MouseLeave="Border_MouseLeave" MouseEnter="Border_MouseEnter">
                 <StackPanel Orientation="Horizontal" >
                     <Grid >
                         <Grid.RowDefinitions>
@@ -23,7 +42,7 @@
                             <ColumnDefinition Width="100"/>
                             <ColumnDefinition Width="200"/>
                             <ColumnDefinition Width="200"/>
-                            <ColumnDefinition Width="700"/>
+                            <ColumnDefinition Width="500"/>
                         </Grid.ColumnDefinitions>
                         <Viewbox Grid.Column="0">
 
@@ -71,8 +90,8 @@
             <RowDefinition Height="0.05*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="0.4*"/>
         </Grid.ColumnDefinitions>
         <controlsview:MainWindowTitle x:Name="mainWindowTitle" Grid.Row="0" Grid.Column="0"/>
         <Grid Grid.Row="0" Grid.Column="1">
@@ -94,11 +113,11 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <ListBox BorderThickness="0" Grid.Row="0" Background="Transparent">
+            <ListBox  ScrollViewer.HorizontalScrollBarVisibility="Hidden" BorderThickness="0" Grid.Row="0" Background="Transparent">
                 <ListBoxItem Padding="20" Background="#FF05D848" Foreground="White" FontWeight="ExtraBold">
-                    <Grid>
+                    <Grid >
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
@@ -109,19 +128,31 @@
 
                             <ColumnDefinition Width="200"/>
 
-                            <ColumnDefinition Width="700"/>
+                            <ColumnDefinition Width="500"/>
                         </Grid.ColumnDefinitions>
                         <TextBlock TextAlignment="Center" Grid.Column="0" FontSize="30" Text="Service" />
+                        <StackPanel Orientation="Horizontal" Grid.Column="1">
+                            <TextBlock TextAlignment="Center" FontSize="30" Text=" Order ID" />
+                            <CheckBox Name="deliveredOrdersCheck" Checked="deliveredOrdersCheck_Checked" Unchecked="deliveredOrdersCheck_Unchecked"></CheckBox>
+                            <StackPanel Orientation="Vertical">
+                                <TextBlock Foreground="Yellow" Text="Include"/>
+                                <TextBlock Foreground="Yellow" Text="Delivered"/>
+                            </StackPanel>
+                            
+                        </StackPanel>
+                        
 
-                        <TextBlock TextAlignment="Center" Grid.Column="1" FontSize="30" Text=" Order ID" />
-
-                        <TextBlock TextAlignment="Center" Grid.Column="2" FontSize="30" Text=" Count"/>
+                        <TextBlock TextAlignment="Center" Grid.Column="2" FontSize="30" Text=" Item Count"/>
 
                         <TextBlock TextAlignment="Center" Grid.Column="3" FontSize="30" Text=" Scheduled Delivery Date"/>
                     </Grid>
                 </ListBoxItem>
             </ListBox>
-            <ListBox x:Name="listorders" Grid.Row="1" BorderThickness="1" ScrollViewer.VerticalScrollBarVisibility="Visible" Background="Transparent" ItemTemplate="{StaticResource orderview}" BorderBrush="Azure" ItemsSource="{Binding}" Visibility="Visible" Margin="0,10,0,45" FontWeight="Black" Grid.RowSpan="2"/>
+            <ListBox x:Name="listorders" Grid.Row="1" ItemContainerStyle="{DynamicResource orderlistcolor}" BorderThickness="1" ScrollViewer.VerticalScrollBarVisibility="Visible" Background="Transparent" ItemTemplate="{StaticResource orderview}" BorderBrush="Azure" ItemsSource="{Binding}" Visibility="Visible" Margin="0,10,0,45" FontWeight="Black" Grid.RowSpan="2" SelectionChanged="listorders_SelectionChanged"/>
         </Grid>
+        <Grid Grid.Row="1" Grid.Column="1" Background="Orange">
+            
+        </Grid>
+        <Grid Grid.Row="3" Grid.ColumnSpan="2" Background="Wheat"></Grid>
     </Grid>
 </Window>

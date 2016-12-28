@@ -54,6 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Business Layer\AppData\AppData.cs" />
     <Compile Include="Business Layer\Orders.cs" />
     <Compile Include="Business Layer\OrdersContext.cs" />
     <Compile Include="ControlsView\MainWindowTitle.xaml.cs">

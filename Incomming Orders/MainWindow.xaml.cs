@@ -8,6 +8,10 @@ using System.Windows.Threading;
 using System.Globalization;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Media;
+using Incomming_Orders.Business_Layer.AppData;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Incomming_Orders
 {
@@ -17,44 +21,27 @@ namespace Incomming_Orders
     public partial class MainWindow : Window
     {
         DispatcherTimer t;
+        Brush bgc = null;
         public MainWindow()
         {
             InitializeComponent();
-            addOrders();
-            addDS();
-            OrdersContext.Orders = new ObservableCollection<Order>(OrdersContext.Orders.OrderBy(i=>i.ScheduledDate));
-            listorders.DataContext = OrdersContext.Orders;
-            t = new DispatcherTimer();
-            t.Tick += T_Tick;
-            t.Interval = new TimeSpan(0, 0, 0, 1);
-            t.Start();
-        }
-
-        private void addDS()
-        {
-            OrdersContext.ds.Add(new DeliveryService() { DSId="ds1", DSName="USPS"});
-            OrdersContext.ds.Add(new DeliveryService() { DSId = "ds2", DSName = "UPS" });
-            OrdersContext.ds.Add(new DeliveryService() { DSId = "ds3", DSName = "FEDEX" });
-            OrdersContext.ds.Add(new DeliveryService() { DSId = "ds4", DSName = "DHL" });
-        }
-
-        private void addOrders()
-        {
-            Random r = new Random();
-            for (int i = 0; i < 30; i++)
+            if (Encoding.UTF8.GetString(MD5.Create().ComputeHash(Encoding.ASCII.GetBytes("AL10$TLPWIOJMNI59%3#9)!^LOENDGG$$&WE~!")))== AppData.initialToMainWindowsSecret)
             {
-                OrdersContext.Orders.Add(new Order()
-                {
-                    OrderId = "ORD0" + i,
-                    Priority = r.Next(0, 4),
-                    OrderDate = DateTime.Parse("12/20/2016 10:30:20 AM"),
-                    ScheduledDate = DateTime.Parse("12/27/2016 12:12 PM").AddDays(r.Next(0, 10)),
-                    DelayedDays = 0,
-                    NoOfItems = 120,
-                    StartPlace = "DeKalb,IL",
-                    AGId = "G" + r.Next(0, 10),
-                    DS = "ds" + r.Next(1, 4)
-                });
+                OrdersContext.addOrders();
+                OrdersContext.addDS();
+                OrdersContext.sortOrder();
+                listorders.DataContext= OrdersContext.Orders;
+                listorders.SelectedIndex = 0;
+                t = new DispatcherTimer();
+                t.Tick += T_Tick;
+                t.Interval = new TimeSpan(0, 0, 0, 1);
+                t.Start();
+            }
+            else
+            {
+                initial n = new initial();
+                n.Show();
+                this.Close();
             }
         }
 
@@ -68,6 +55,51 @@ namespace Incomming_Orders
             var host = new initial();
             host.Show();
             this.Close();
+        }
+        private void Border_MouseEnter(object sender, MouseEventArgs e)
+        {
+            bgc = (sender as Border).Background;
+            (sender as Border).Background = Brushes.Yellow;
+        }
+
+        private void Border_MouseLeave(object sender, MouseEventArgs e)
+        {
+            (sender as Border).Background = bgc;
+        }
+        private void listorders_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+           // MessageBox.Show(listorders.SelectedIndex.ToString());
+        }
+
+        private void deliveredOrdersCheck_Checked(object sender, RoutedEventArgs e)
+        {
+            Random r = new Random();
+            for (int i = 30; i < 40; i++)
+            {
+                OrdersContext.Orders.Add(new Order()
+                {
+                    OrderId = "ORD0" + i,
+                    Priority = r.Next(0, 4),
+                    OrderDate = DateTime.Parse("12/20/2016 10:30:20 AM"),
+                    ScheduledDate = DateTime.Parse("12/23/2016 12:12 PM").AddDays(r.Next(-3, 3)),
+                    DelayedDays = 0,
+                    NoOfItems = 120,
+                    StartPlace = "DeKalb,IL",
+                    AGId = "G" + r.Next(0, 10),
+                    DS = "ds" + r.Next(1, 4)
+                });
+            }
+            OrdersContext.sortOrder();
+            listorders.DataContext = OrdersContext.Orders;
+        }
+
+        private void deliveredOrdersCheck_Unchecked(object sender, RoutedEventArgs e)
+        {
+            foreach (var item in OrdersContext.Orders.ToList())
+            {
+                if (item.ScheduledDate < DateTime.Now)
+                    OrdersContext.Orders.Remove(item);
+            }
         }
     }
 }
