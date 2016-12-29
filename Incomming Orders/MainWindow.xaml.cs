@@ -12,6 +12,9 @@ using System.Windows.Media;
 using Incomming_Orders.Business_Layer.AppData;
 using System.Security.Cryptography;
 using System.Text;
+using Newtonsoft;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace Incomming_Orders
 {
@@ -30,6 +33,7 @@ namespace Incomming_Orders
                 OrdersContext.addOrders();
                 OrdersContext.addDS();
                 OrdersContext.sortOrder();
+                serializeCollection(); // Writing collection to file and clearing collection and reassigning
                 listorders.DataContext= OrdersContext.Orders;
                 listorders.SelectedIndex = 0;
                 t = new DispatcherTimer();
@@ -43,6 +47,13 @@ namespace Incomming_Orders
                 n.Show();
                 this.Close();
             }
+        }
+
+        private void serializeCollection()
+        {
+            File.WriteAllText("Orders.json",JsonConvert.SerializeObject(OrdersContext.Orders));
+            OrdersContext.Orders.Clear();
+            OrdersContext.Orders= JsonConvert.DeserializeObject<ObservableCollection<Order>>(File.ReadAllText("Orders.json"));
         }
 
         private void T_Tick(object sender, EventArgs e)

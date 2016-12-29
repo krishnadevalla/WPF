@@ -17,3 +17,5 @@ C:\Users\krish\documents\visual studio 2017\Projects\Incomming Orders\Incomming 
 C:\Users\krish\documents\visual studio 2017\Projects\Incomming Orders\Incomming Orders\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\krish\documents\visual studio 2017\Projects\Incomming Orders\Incomming Orders\obj\Debug\ControlsView\MainWindowTitle.baml
 C:\Users\krish\Documents\Visual Studio 2017\Projects\Incomming Orders\Incomming Orders\obj\Debug\Incomming Orders.csprojResolveAssemblyReference.cache
+C:\Users\krish\Documents\Visual Studio 2017\Projects\Incomming Orders\Incomming Orders\bin\Debug\Newtonsoft.Json.dll
+C:\Users\krish\Documents\Visual Studio 2017\Projects\Incomming Orders\Incomming Orders\bin\Debug\Newtonsoft.Json.xml
