@@ -28,11 +28,11 @@ namespace Incomming_Orders.Business_Layer
         public string InChargeId { set; get; }
         public string GroupId { set; get; }
     }
-    class People
+    public class People
     {
-        string Id { get; set; }
-        string Name { get; set; }
-        string Photo { set; get; }
-        string Desinition { set; get; }
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string Photo { set; get; }
+        public string Desinition { set; get; }
     }
 }

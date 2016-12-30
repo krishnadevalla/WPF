@@ -18,10 +18,10 @@ namespace Incomming_Orders.Converters
             else if (DateTime.Now.AddDays(1).ToString().Substring(0, 8) == v.ToString().Substring(0, 8))
                 return "Tomorrow";
             else if (DateTime.Now.AddDays(2).ToString().Substring(0, 8) == v.ToString().Substring(0, 8))
-                return "Day after Tomorrow";
+                return "After Tomorrow";
             else if (DateTime.Now.Date > v)
                 return "Delivered";
-            return DateTime.Parse(value.ToString()).ToString("MMMM dd, yyyy") ;
+            return DateTime.Parse(value.ToString()).ToString("MMMM").Substring(0, 3)+" "+DateTime.Parse(value.ToString()).ToString("dd, yyyy");
         }
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {

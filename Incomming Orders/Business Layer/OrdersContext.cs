@@ -11,6 +11,8 @@ namespace Incomming_Orders.Business_Layer
     {
         public static ObservableCollection<Order> Orders=new ObservableCollection<Order>();
         public static ObservableCollection<DeliveryService> ds = new ObservableCollection<DeliveryService>();
+        public static ObservableCollection<People> p = new ObservableCollection<People>();
+        public static ObservableCollection<AssignGroup> ag = new ObservableCollection<AssignGroup>();
         public static void addOrders()
         {
             Random r = new Random();
@@ -25,8 +27,8 @@ namespace Incomming_Orders.Business_Layer
                     DelayedDays = 0,
                     NoOfItems = 120,
                     StartPlace = "DeKalb,IL",
-                    AGId = "G" + r.Next(0, 10),
-                    DS = "ds" + r.Next(1, 4)
+                    AGId = "GROUP" + r.Next(0, 10),
+                    DS = "ds" + r.Next(1, 5)
                 });
             }
         }
@@ -41,6 +43,30 @@ namespace Incomming_Orders.Business_Layer
         {
             OrdersContext.Orders = new ObservableCollection<Order>(OrdersContext.Orders.OrderBy(i => i.ScheduledDate));
         }
-
+        public static void addAG()
+        {
+            Random r = new Random();
+            for (int i = 0; i < 10; i++)
+            {
+                OrdersContext.ag.Add(new AssignGroup() {
+                    InChargeId="PEOP"+r.Next(0,40),
+                    GroupId="GROUP"+i
+                });
+            }
+        }
+        public static void addPeople()
+        {
+            string[] desig = {"Manager","Supervisor","Worker","Deputy"};
+            Random r = new Random();
+            for (int i = 0; i < 40; i++)
+            {
+                OrdersContext.p.Add(new People() {
+                    Id = "PEOP" + i,
+                    Desinition = desig[r.Next(0, 4)],
+                    Name = "Person, with id " + "PEOP" + i,
+                    Photo = r.Next(1, 6).ToString()
+                });
+            }
+        }
     }
 }

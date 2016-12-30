@@ -1,0 +1,20 @@
+C:\Users\krish\documents\visual studio 2017\Projects\Incomming Orders\Incomming Orders\bin\Release\Incomming Orders.exe.config
+C:\Users\krish\documents\visual studio 2017\Projects\Incomming Orders\Incomming Orders\bin\Release\Incomming Orders.exe
+C:\Users\krish\documents\visual studio 2017\Projects\Incomming Orders\Incomming Orders\bin\Release\Incomming Orders.pdb
+C:\Users\krish\documents\visual studio 2017\Projects\Incomming Orders\Incomming Orders\bin\Release\Newtonsoft.Json.dll
+C:\Users\krish\documents\visual studio 2017\Projects\Incomming Orders\Incomming Orders\bin\Release\Newtonsoft.Json.xml
+C:\Users\krish\documents\visual studio 2017\Projects\Incomming Orders\Incomming Orders\obj\Release\ControlsView\MainWindowTitle.g.cs
+C:\Users\krish\documents\visual studio 2017\Projects\Incomming Orders\Incomming Orders\obj\Release\initial.g.cs
+C:\Users\krish\documents\visual studio 2017\Projects\Incomming Orders\Incomming Orders\obj\Release\MainWindow.g.cs
+C:\Users\krish\documents\visual studio 2017\Projects\Incomming Orders\Incomming Orders\obj\Release\App.g.cs
+C:\Users\krish\documents\visual studio 2017\Projects\Incomming Orders\Incomming Orders\obj\Release\GeneratedInternalTypeHelper.g.cs
+C:\Users\krish\documents\visual studio 2017\Projects\Incomming Orders\Incomming Orders\obj\Release\Incomming Orders_MarkupCompile.cache
+C:\Users\krish\documents\visual studio 2017\Projects\Incomming Orders\Incomming Orders\obj\Release\Incomming Orders_MarkupCompile.lref
+C:\Users\krish\documents\visual studio 2017\Projects\Incomming Orders\Incomming Orders\obj\Release\ControlsView\MainWindowTitle.baml
+C:\Users\krish\documents\visual studio 2017\Projects\Incomming Orders\Incomming Orders\obj\Release\initial.baml
+C:\Users\krish\documents\visual studio 2017\Projects\Incomming Orders\Incomming Orders\obj\Release\MainWindow.baml
+C:\Users\krish\documents\visual studio 2017\Projects\Incomming Orders\Incomming Orders\obj\Release\Incomming Orders.g.resources
+C:\Users\krish\documents\visual studio 2017\Projects\Incomming Orders\Incomming Orders\obj\Release\Incomming_Orders.Properties.Resources.resources
+C:\Users\krish\documents\visual studio 2017\Projects\Incomming Orders\Incomming Orders\obj\Release\Incomming Orders.csproj.GenerateResource.Cache
+C:\Users\krish\documents\visual studio 2017\Projects\Incomming Orders\Incomming Orders\obj\Release\Incomming Orders.exe
+C:\Users\krish\documents\visual studio 2017\Projects\Incomming Orders\Incomming Orders\obj\Release\Incomming Orders.pdb

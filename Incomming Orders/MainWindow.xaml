@@ -12,6 +12,8 @@
         <c:SDConverter x:Key="sdc" />
         <c:PriorityConverter x:Key="pc" />
         <c:DSConverter x:Key="dsc"/>
+        <c:AGConverter x:Key="agc"/>
+        <c:GroupToPersonConverter x:Key="gtpc"/>
         <Style x:Key="orderlistcolor" TargetType="ListBoxItem">
             <Setter Property="Template">
                 <Setter.Value>
@@ -69,13 +71,6 @@
                 </StackPanel>
             </Border>
         </DataTemplate>
-        <Style TargetType="ListBoxItem">
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="LightSteelBlue" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
     </Window.Resources>
     <Window.Background>
         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -138,9 +133,9 @@
                                 <TextBlock Foreground="Yellow" Text="Include"/>
                                 <TextBlock Foreground="Yellow" Text="Delivered"/>
                             </StackPanel>
-                            
+
                         </StackPanel>
-                        
+
 
                         <TextBlock TextAlignment="Center" Grid.Column="2" FontSize="30" Text=" Item Count"/>
 
@@ -150,9 +145,74 @@
             </ListBox>
             <ListBox x:Name="listorders" Grid.Row="1" ItemContainerStyle="{DynamicResource orderlistcolor}" BorderThickness="1" ScrollViewer.VerticalScrollBarVisibility="Visible" Background="Transparent" ItemTemplate="{StaticResource orderview}" BorderBrush="Azure" ItemsSource="{Binding}" Visibility="Visible" Margin="0,10,0,45" FontWeight="Black" Grid.RowSpan="2" SelectionChanged="listorders_SelectionChanged"/>
         </Grid>
-        <Grid Grid.Row="1" Grid.Column="1" Background="Orange">
-            
-        </Grid>
+        <Border Height="Auto" Width="Auto" BorderBrush="AliceBlue" Padding="30" BorderThickness="10" Grid.Row="1" Grid.Column="1">
+            <Grid Name="selectedOrder">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="35"/>
+                </Grid.RowDefinitions>
+                <Rectangle Width="200" Height="200" OpacityMask="{x:Null}" StrokeThickness="10" Stroke="White" >
+                    <Rectangle.Fill>
+                        <ImageBrush ImageSource="{Binding DS, Converter={StaticResource dsc}}" Stretch="Uniform"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Viewbox Grid.Row="1"  HorizontalAlignment="Left">
+                    <StackPanel  Orientation="Horizontal">
+                        <TextBlock Foreground="Wheat" Text="Order Id:                      "/>
+                        <TextBlock Foreground="White" FontWeight="ExtraBold" Text="{Binding OrderId}"/>
+                    </StackPanel>
+                </Viewbox>
+                <Viewbox Grid.Row="2"  HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Foreground="Wheat" Text="Order Date:                 "/>
+                        <TextBlock Foreground="White" FontWeight="ExtraBold" Text="{Binding OrderDate}"/>
+                    </StackPanel>
+                </Viewbox>
+                <Viewbox Grid.Row="3"  HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Foreground="Wheat" Text="Delivery Date:              "/>
+                        <TextBlock Foreground="White" TextWrapping="WrapWithOverflow"  FontWeight="ExtraBold" Text="{Binding ScheduledDate, Converter={StaticResource sdc}}"/>
+                    </StackPanel>
+                </Viewbox>
+                <Viewbox Grid.Row="4"  HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Foreground="Wheat" Text="No of Days delayed:    "/>
+                        <TextBlock Foreground="White"  FontWeight="ExtraBold" Text="{Binding DelayedDays}"/>
+                    </StackPanel>
+                </Viewbox>
+                <Viewbox Grid.Row="5"  HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Foreground="Wheat" Text="Assigned to:               " VerticalAlignment="Center"/>
+                        <Image Height="100" Width="130" Source="{Binding AGId, Converter={StaticResource agc}}"/>
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Group: " Foreground="Wheat"/>
+                                <TextBlock VerticalAlignment="Center" Foreground="White"  FontWeight="ExtraBold" Text="{Binding AGId}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Person Id: " Foreground="Wheat"/>
+                                <TextBlock VerticalAlignment="Center" Foreground="White"  FontWeight="ExtraBold" Text="{Binding AGId,Converter={StaticResource gtpc}, ConverterParameter=name}"/>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Name: " Foreground="Wheat"/>
+                                <TextBlock VerticalAlignment="Center" Foreground="White"  FontWeight="ExtraBold" Text="{Binding AGId,Converter={StaticResource gtpc},ConverterParameter=id}"/>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Viewbox>
+                <Viewbox Grid.Row="6"  HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Foreground="Wheat" Text="Number of Items:        "/>
+                        <TextBlock Foreground="White"  FontWeight="ExtraBold" Text="{Binding NoOfItems}"/>
+                    </StackPanel>
+                </Viewbox>
+            </Grid>
+        </Border>
         <Grid Grid.Row="3" Grid.ColumnSpan="2" Background="Wheat"></Grid>
     </Grid>
 </Window>

@@ -31,6 +31,8 @@ namespace Incomming_Orders
             if (Encoding.UTF8.GetString(MD5.Create().ComputeHash(Encoding.ASCII.GetBytes("AL10$TLPWIOJMNI59%3#9)!^LOENDGG$$&WE~!")))== AppData.initialToMainWindowsSecret)
             {
                 OrdersContext.addOrders();
+                OrdersContext.addPeople();
+                OrdersContext.addAG();
                 OrdersContext.addDS();
                 OrdersContext.sortOrder();
                 serializeCollection(); // Writing collection to file and clearing collection and reassigning
@@ -79,7 +81,8 @@ namespace Incomming_Orders
         }
         private void listorders_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-           // MessageBox.Show(listorders.SelectedIndex.ToString());
+            selectedOrder.DataContext = listorders.SelectedItem;
+
         }
 
         private void deliveredOrdersCheck_Checked(object sender, RoutedEventArgs e)
@@ -108,7 +111,7 @@ namespace Incomming_Orders
         {
             foreach (var item in OrdersContext.Orders.ToList())
             {
-                if (item.ScheduledDate < DateTime.Now)
+                if (item.ScheduledDate.Date < DateTime.Now.Date)
                     OrdersContext.Orders.Remove(item);
             }
         }
