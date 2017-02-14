@@ -13,6 +13,7 @@ namespace Incomming_Orders.Business_Layer
         public static ObservableCollection<DeliveryService> ds = new ObservableCollection<DeliveryService>();
         public static ObservableCollection<People> p = new ObservableCollection<People>();
         public static ObservableCollection<AssignGroup> ag = new ObservableCollection<AssignGroup>();
+        public static int selectedIndex { get; set; }
         public static void addOrders()
         {
             Random r = new Random();
@@ -25,7 +26,7 @@ namespace Incomming_Orders.Business_Layer
                     OrderDate = DateTime.Now.AddDays(-8),
                     ScheduledDate = DateTime.Now.AddDays(r.Next(0, 10)),
                     DelayedDays = 0,
-                    NoOfItems = 120,
+                    NoOfItems = r.Next(50,200),
                     StartPlace = "DeKalb,IL",
                     AGId = "GROUP" + r.Next(0, 10),
                     DS = "ds" + r.Next(1, 5)

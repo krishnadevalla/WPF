@@ -99,7 +99,7 @@ namespace Incomming_Orders
                     DelayedDays = 0,
                     NoOfItems = 120,
                     StartPlace = "DeKalb,IL",
-                    AGId = "G" + r.Next(0, 10),
+                    AGId = "GROUP" + r.Next(0, 10),
                     DS = "ds" + r.Next(1, 4)
                 });
             }
@@ -114,6 +114,32 @@ namespace Incomming_Orders
                 if (item.ScheduledDate.Date < DateTime.Now.Date)
                     OrdersContext.Orders.Remove(item);
             }
+        }
+
+        private void addorder_Click(object sender, RoutedEventArgs e)
+        {
+            Order o = new Order() { OrderId = "ORD" + new Random().Next(100, 200) };
+            OrdersContext.Orders.Add(o);
+            OrdersContext.selectedIndex = OrdersContext.Orders.IndexOf(o);
+            EditPage ep = new EditPage();
+            ep.Show();
+            MessageBox.Show("hi");
+        }
+
+        private void deleteorder_Click(object sender, RoutedEventArgs e)
+        {
+            int indx = listorders.SelectedIndex;
+            OrdersContext.Orders.Remove(listorders.SelectedItem as Order);
+            listorders.DataContext = OrdersContext.Orders;
+            if (indx < OrdersContext.Orders.Count - 1 && indx >= 0)
+            {
+                listorders.SelectedIndex = indx;
+            }
+            else
+            {
+                listorders.SelectedIndex = OrdersContext.Orders.Count - 1;
+            }
+
         }
     }
 }

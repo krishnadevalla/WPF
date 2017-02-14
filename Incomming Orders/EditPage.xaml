@@ -1,0 +1,59 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Incomming_Orders"
+        xmlns:Business_Layer="clr-namespace:Incomming_Orders.Business_Layer" x:Class="Incomming_Orders.EditPage"
+        mc:Ignorable="d"
+        Title="EditPage" Height="600" Width="900">
+    <Window.Resources>
+        <DataTemplate x:Key="listAG">
+            <TextBlock Text="{Binding GroupID}"></TextBlock>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid Background="Peru">
+        <Viewbox Height="Auto">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                    <TextBlock Text="Order Id:"/>
+                    <TextBlock Width="200" Text="{Binding OrderId}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                    <TextBlock Text="Assign to:"/>
+                    <ListBox x:Name="assign" Width="200" ItemTemplate="{StaticResource listAG}">
+                    </ListBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                    <TextBlock Text="Priority:  "/>
+                    <RadioButton GroupName="priority" Content="0(Low)"/>
+                    <RadioButton GroupName="priority" Content="1(Medium)"/>
+                    <RadioButton GroupName="priority" Content="2(High)"/>
+                    <RadioButton GroupName="priority" Content="3(Expedite)"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                    <TextBlock Text="Order Id:"/>
+                    <TextBlock Text="{Binding OrderId, Mode=TwoWay}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                    <TextBlock Text="Ordered Date:"/>
+                    <DatePicker Text="{Binding OrderDate, Mode=TwoWay}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                    <TextBlock Text="Order Id:"/>
+                    <TextBlock Text="{Binding OrderId}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
+                    <TextBlock Text="Order Id:"/>
+                    <TextBlock Text="{Binding OrderId}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Background="YellowGreen" Foreground="White" FontWeight="ExtraBold" Padding="50 0 50 0" Content="Save" Click="Button_Click_1"/>
+                    <Button Background="Red"  Foreground="White" FontWeight="ExtraBold" Padding="50 0 50 0" Content="Cancel" Click="Button_Click"/>
+                </StackPanel>
+
+            </StackPanel>
+        </Viewbox>
+    </Grid>
+</Window>
